@@ -45,6 +45,14 @@
             font-size: 1rem;
         }
 
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
         button {
             padding: 10px 20px;
             font-size: 1rem;
@@ -82,8 +90,17 @@
 
     <div class="container">
         <h1>Language Translator</h1>
-        <p>Translate text to German quickly with this simple tool!</p>
+        <p>Select the target language and enter text to translate.</p>
+        
         <textarea id="text-input" placeholder="Enter text to translate..." required></textarea>
+
+        <!-- Language selection dropdown -->
+        <select id="language-select">
+            <option value="de">German</option>
+            <option value="mr">Marathi</option>
+            <option value="fr">French</option>
+        </select>
+        
         <br />
         <button onclick="translateText()">Translate</button>
         <p id="loading-message" class="loading" style="display: none;">Translating...</p>
@@ -93,6 +110,7 @@
     <script>
         async function translateText() {
             const inputText = document.getElementById('text-input').value.trim();
+            const selectedLanguage = document.getElementById('language-select').value;
             const loadingMessage = document.getElementById('loading-message');
             const resultDiv = document.getElementById('translation-result');
 
@@ -107,7 +125,7 @@
             }
 
             try {
-                const response = await fetch(`/translate/?text=${encodeURIComponent(inputText)}`, {
+                const response = await fetch(`/translate/?text=${encodeURIComponent(inputText)}&lang=${selectedLanguage}`, {
                     method: 'GET',
                 });
 
