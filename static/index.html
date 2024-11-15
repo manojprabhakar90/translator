@@ -45,7 +45,7 @@
             font-size: 1rem;
         }
 
-        select {
+        input {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -87,21 +87,14 @@
 </head>
 
 <body>
-
     <div class="container">
         <h1>Language Translator</h1>
-        <p>Select the target language and enter text to translate.</p>
+        <p>Enter the text to translate and Type the language. It supports 50 Languages including Tamil, Telugu, Malayalam, French, German</p>
         
-        <textarea id="text-input" placeholder="Enter text to translate..." required></textarea>
-
-        <!-- Language selection dropdown -->
-        <select id="language-select">
-            <option value="de">German</option>
-            <option value="mr">Marathi</option>
-            <option value="fr">French</option>
-        </select>
+        <textarea id="text-input" placeholder="Enter text to translate" required></textarea>
         
-        <br />
+        <input type="text" id="language-input" placeholder="Enter target language (e.g. Spanish, French, etc.)" required>
+        
         <button onclick="translateText()">Translate</button>
         <p id="loading-message" class="loading" style="display: none;">Translating...</p>
         <div id="translation-result" class="result" style="display: none;"></div>
@@ -109,8 +102,12 @@
 
     <script>
         async function translateText() {
-            const inputText = document.getElementById('text-input').value.trim();
-            const selectedLanguage = document.getElementById('language-select').value;
+            const textInput = document.getElementById('text-input');
+            const languageInput = document.getElementById('language-input');
+            const inputText = textInput?.value.trim() ?? '';
+            const selectedLanguage = languageInput?.value.trim() ?? '';
+            
+            // Get the loading message and result div
             const loadingMessage = document.getElementById('loading-message');
             const resultDiv = document.getElementById('translation-result');
 
