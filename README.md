@@ -16,5 +16,6 @@ The main idea behind creating this package is to use poetry to install all the d
 6. Run poetry run uvicorn translate.main:app --reload
 7. You should be getting something similar to the below image
 
-![image](https://github.com/user-attachments/assets/1476361f-019f-499c-a78e-83401ba3dc7f)
+![image](https://github.com/user-attachments/assets/027fdbcc-5438-4bb0-92a6-e24df1160fec)
+
  
