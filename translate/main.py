@@ -1,19 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from translate.translation import Translator  # Your existing translation class
 
 app = FastAPI()
 
-# Mapping of languages to model names
-model_mapping = {
-    "de": "facebook/mbart-large-50-many-to-many-mmt",  # German model
-    "mr": "facebook/mbart-large-50-many-to-many-mmt",  # Marathi model (same model, adjust accordingly)
-    "fr": "facebook/mbart-large-50-many-to-many-mmt",  # French model (same model, adjust accordingly)
-}
-
 # Serve the index.html page
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Initialize a default translator instance
+translator = Translator(model_name="facebook/mbart-large-50-many-to-many-mmt")  # Using a single model for all languages
 
 @app.get("/", response_class=HTMLResponse)
 async def read_index():
@@ -22,11 +18,16 @@ async def read_index():
 
 @app.get("/translate/")
 async def translate_text(text: str, lang: str):
-    # Select the model based on the target language
-    model_name = model_mapping.get(lang, "facebook/mbart-large-50-many-to-many-mmt")
-    translator = Translator(model_name=model_name)
+    try:
+        # Since we're using the same model, there's no need to map languages to different models
+        model_name = "facebook/mbart-large-50-many-to-many-mmt"  # Single model used for all languages
+        translator.model_name = model_name  # Ensure the translator uses the correct model
+        translator.tokenizer = Translator(model_name=model_name).tokenizer  # Update tokenizer for the model
+        
+        # Translate the text
+        translated_text = translator.translate(text, lang)
+        
+        return {"original": text, "translated": translated_text}
     
-    # Translate the text
-    translated_text = translator.translate(text, target_lang=lang)
-    
-    return {"original": text, "translated": translated_text}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error during translation: {str(e)}")
