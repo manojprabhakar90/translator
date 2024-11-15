@@ -1,5 +1,5 @@
 import logging
-from transformers import MarianMTModel, MarianTokenizer
+from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
 
 # Configure logger
 logger = logging.getLogger("TranslationLogger")
@@ -20,15 +20,14 @@ logger.addHandler(console_handler)
 
 
 class Translator:
-    def __init__(self):
+    def __init__(self,model_name="facebook/mbart-large-50-many-to-many-mmt"):
         """
         Initializes the translator with self command.
         """
-        model_name="Helsinki-NLP/opus-mt-en-de"
         logger.info(f"Initializing translator with model: {model_name}")
         try:
-            self.tokenizer = MarianTokenizer.from_pretrained(model_name)
-            self.model = MarianMTModel.from_pretrained(model_name)
+            self.tokenizer = MBart50TokenizerFast.from_pretrained(model_name)
+            self.model = MBartForConditionalGeneration.from_pretrained(model_name)
             logger.info("Model and tokenizer loaded successfully.")
         except Exception as e:
             logger.error(f"Error loading model/tokenizer: {e}")
