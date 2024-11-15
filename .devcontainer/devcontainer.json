@@ -1,0 +1,26 @@
+{
+    "name": "Translator Dev Container",
+    "context": ".",
+    "dockerFile": "Dockerfile",
+    "postCreateCommand": "poetry install",
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "python.defaultInterpreterPath": "/root/.local/bin/python",
+          "terminal.integrated.shell.linux": "/bin/bash"
+        },
+        "extensions": [
+          "ms-python.python",
+          "ms-python.vscode-pylance",
+          "ms-toolsai.jupyter",
+          "esbenp.prettier-vscode"
+        ]
+      }
+    },
+    "forwardPorts": [8000],
+    "mounts": [
+      "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
+    "remoteUser": "root"
+  }
+  

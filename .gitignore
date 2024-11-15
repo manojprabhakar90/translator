@@ -1,0 +1,22 @@
+# Python-related files
+*.pyc
+*.pyo
+__pycache__/
+*.env
+*.venv
+
+# Poetry-related files
+.poetry/
+poetry.lock
+
+# IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+
+# OS-specific files
+.DS_Store       # macOS
+Thumbs.db       # Windows
+
+# Log files
+*.log
