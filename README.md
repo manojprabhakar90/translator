@@ -1,4 +1,4 @@
-**TRANSLATOR**
+![image](https://github.com/user-attachments/assets/4947410c-dd4a-48df-807c-8e9598490b1c)**TRANSLATOR**
 
 This Project was created to implement CI workflows as part of the repository. 
 
@@ -17,5 +17,4 @@ The main idea behind creating this package is to use poetry to install all the d
 7. You should be getting something similar to the below image
 8. The number of languages supported at this point of time is 50 ("Arabic","Czech","German","English","Spanish","Estonian","Finnish","French","Gujarati","Hindi","Italian","Japanese","Kazakh","Korean","Lithuanian","Latvian","Burmese","Nepali","Dutch","Romanian","Russian","Sinhala","Turkish","Vietnamese","Chinese","Afrikaans","Azerbaijani","Bengali","Persian","Hebrew","Croatian","Indonesian","Georgian","Khmer","Macedonian","Malayalam","Mongolian","Marathi","Polish","Pashto","Portuguese","Swedish","Swahili","Tamil","Telugu","Thai","Tagalog","Ukrainian","Urdu","Xhosa","Galician","Slovene")
 
-![image](https://github.com/user-attachments/assets/5531a7d9-5a9c-48c6-90b3-16ac812cff45)
-
+![image](https://github.com/user-attachments/assets/eda24f9f-4901-416e-9bf1-367989803569)
