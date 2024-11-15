@@ -15,6 +15,11 @@ The main idea behind creating this package is to use poetry to install all the d
 5. Use poetry install to install all the dependencies.
 6. Run poetry run uvicorn translate.main:app --reload
 7. You should be getting something similar to the below image
+8. The number of languages supported at this point of time is 50 ("Arabic","Czech","German","English","Spanish","Estonian","Finnish","French","Gujarati","Hindi","Italian","Japanese","Kazakh","Korean","Lithuanian","Latvian","Burmese","Nepali","Dutch","Romanian","Russian","Sinhala","Turkish","Vietnamese","Chinese","Afrikaans","Azerbaijani","Bengali","Persian","Hebrew","Croatian","Indonesian","Georgian","Khmer","Macedonian","Malayalam","Mongolian","Marathi","Polish","Pashto","Portuguese","Swedish","Swahili","Tamil","Telugu","Thai","Tagalog","Ukrainian","Urdu","Xhosa","Galician","Slovene",
+)
+
+![image](https://github.com/user-attachments/assets/5531a7d9-5a9c-48c6-90b3-16ac812cff45)
+
 
 ![image](https://github.com/user-attachments/assets/027fdbcc-5438-4bb0-92a6-e24df1160fec)
 
