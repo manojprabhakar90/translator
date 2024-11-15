@@ -1,5 +1,5 @@
-**TRANSLATOR:
-**
+**TRANSLATOR**
+
 This Project was created to implement CI workflows as part of the repository. 
 
 **IDEA:**
