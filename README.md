@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/4947410c-dd4a-48df-807c-8e9598490b1c)**TRANSLATOR**
+**TRANSLATOR**
 
 This Project was created to implement CI workflows as part of the repository. 
 
