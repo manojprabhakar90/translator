@@ -10,10 +10,11 @@ The main idea behind creating this package is to use poetry to install all the d
 
 1. Open Visual Studio Code. 
 2. Clone the repository.
-3. Open the devcontainer.json
-4. Use poetry install to install all the dependencies.
-5. Run poetry run uvicorn translate.main:app --reload
-6. You should be getting something similar to the below image
+3. Install docker in your system. (Either through WSL or directly in your Unix Machine - https://medium.com/@tomer.klein/step-by-step-tutorial-installing-docker-and-docker-compose-on-ubuntu-a98a1b7aaed0)
+4. Open the devcontainer.json
+5. Use poetry install to install all the dependencies.
+6. Run poetry run uvicorn translate.main:app --reload
+7. You should be getting something similar to the below image
 
 ![image](https://github.com/user-attachments/assets/1476361f-019f-499c-a78e-83401ba3dc7f)
  
