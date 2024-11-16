@@ -89,14 +89,14 @@
 <body>
     <div class="container">
         <h1>Language Translator</h1>
-        <p>Enter the text to translate and Type the language. It supports 50 Languages including Tamil, Telugu, Malayalam, French, German</p>
+        <p>Enter the text to translate. You can either detect the language or specify the target language (e.g., Spanish, French).</p>
         
         <textarea id="text-input" placeholder="Enter text to translate" required></textarea>
         
-        <input type="text" id="language-input" placeholder="Enter target language (e.g. Spanish, French, etc.)" required>
+        <input type="text" id="language-input" placeholder="Enter target language or type 'Detect Language'" required>
         
         <button onclick="translateText()">Translate</button>
-        <p id="loading-message" class="loading" style="display: none;">Translating...</p>
+        <p id="loading-message" class="loading" style="display: none;">Processing...</p>
         <div id="translation-result" class="result" style="display: none;"></div>
     </div>
 
@@ -107,11 +107,9 @@
             const inputText = textInput?.value.trim() ?? '';
             const selectedLanguage = languageInput?.value.trim() ?? '';
             
-            // Get the loading message and result div
             const loadingMessage = document.getElementById('loading-message');
             const resultDiv = document.getElementById('translation-result');
 
-            // Hide previous results and show loading message
             resultDiv.style.display = 'none';
             loadingMessage.style.display = 'block';
 
@@ -121,20 +119,28 @@
                 return;
             }
 
+            let url;
+            if (selectedLanguage.toLowerCase() === 'detect language') {
+                url = `/detect-and-translate/?text=${encodeURIComponent(inputText)}`;
+            } else {
+                url = `/translate/?text=${encodeURIComponent(inputText)}&lang=${encodeURIComponent(selectedLanguage)}`;
+            }
+
             try {
-                const response = await fetch(`/translate/?text=${encodeURIComponent(inputText)}&lang=${selectedLanguage}`, {
+                const response = await fetch(url, {
                     method: 'GET',
                 });
 
                 if (response.ok) {
                     const result = await response.json();
-                    resultDiv.innerHTML = `<strong>Original Text:</strong><br>${result.original}<br><br><strong>Translated Text:</strong><br>${result.translated}`;
+                    const detectedLang = result.detectedLanguage ? `<strong>Detected Language:</strong> ${result.detectedLanguage}<br><br>` : '';
+                    resultDiv.innerHTML = `${detectedLang}<strong>Original Text:</strong><br>${result.original}<br><br><strong>Translated Text:</strong><br>${result.translated}`;
                     resultDiv.style.display = 'block';
                 } else {
                     alert('Translation failed. Please try again later.');
                 }
             } catch (error) {
-                alert('An error occurred while translating.');
+                alert('An error occurred while processing your request.');
             } finally {
                 loadingMessage.style.display = 'none';
             }
